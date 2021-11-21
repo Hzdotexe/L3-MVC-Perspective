@@ -1,6 +1,4 @@
-package view;
-
-import javax.swing.*;
+package controleur.PatronCommand;
 
 /******************************************************
  Cours:   LOG121
@@ -11,13 +9,12 @@ import javax.swing.*;
                Hanz Sami, Fatsy Ramampiarison,
                Nureddin Aida
  Professeur :  Vincent Lacasse
- Nom du fichier: Perspective.java
- Date créé: 2021-11-15
+ Nom du fichier: Command.java
+ Date créé: 2021-11-20
  *******************************************************/
 
-public class Perspective extends JPanel {
+public interface Command {
 
-    public Perspective(){
+    public boolean doIt();
 
-    }
 }

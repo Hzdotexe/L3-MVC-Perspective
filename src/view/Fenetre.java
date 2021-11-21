@@ -8,6 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+               Hanz Sami, Fatsy Ramampiarison,
+               Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: Fenetre.java
+ Date créé: 2021-11-15
+ *******************************************************/
+
 public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
