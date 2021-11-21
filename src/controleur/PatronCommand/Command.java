@@ -1,5 +1,7 @@
 package controleur.PatronCommand;
 
+import java.awt.*;
+
 /******************************************************
  Cours:   LOG121
  Session: A2021
@@ -16,5 +18,6 @@ package controleur.PatronCommand;
 public interface Command {
 
     public boolean doIt();
+    public void paint(Graphics g);
 
 }
