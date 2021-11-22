@@ -1,24 +1,26 @@
 package view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
+    public BufferedImage img = null;
+    private JPanel superPanel;
     private JMenuBar menuBar;
 
-    public Fenetre()  {
-
-        //Ajout du panneau
-        JPanel panneau = new JPanel();
-        this.setContentPane(panneau);
+    public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
 
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,8 +33,22 @@ public class Fenetre extends JFrame {
         configMenu();
         this.setJMenuBar(menuBar);
 
-        this.setLayout(null);
+        //Ajout du panneau englobant
+        createSuperPanel(init, zoom , translation);
+        this.add(this.superPanel);
+
         this.setVisible(true);
+    }
+
+    private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
+        this.superPanel = new JPanel();
+        this.superPanel.setLayout(null);
+        this.superPanel.setBackground(Color.GRAY);
+        this.superPanel.add(init);
+        this.superPanel.add(zoom);
+        this.superPanel.add(translation);
+
+
     }
 
     private void configMenu(){
@@ -47,17 +63,27 @@ public class Fenetre extends JFrame {
             fileChooser.setDialogTitle("Sélectionnez une photo");
             fileChooser.setAcceptAllFileFilterUsed(false);
             // Créer un filtre
-            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".png", "png");
+            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".jpeg", "jpeg");
             fileChooser.addChoosableFileFilter(filtre);
 
             int returnValue = fileChooser.showOpenDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    this.img = ImageIO.read(fileChooser.getSelectedFile());
+                    System.out.println(this.img);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         menu.add(load);
         menu.add(save);
         menuBar.add(menu);
     }
+
+    public BufferedImage getImg() {
+        return img;
+    }
+
 }
