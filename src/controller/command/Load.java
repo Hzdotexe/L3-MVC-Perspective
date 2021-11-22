@@ -1,4 +1,4 @@
-package controleur.PatronCommand;
+package controller.command;
 
 import view.Fenetre;
 import view.Perspective;
@@ -32,7 +32,7 @@ public class Load implements Command{
         this.window = window;
     }
     @Override
-    public boolean doIt() {
+    public boolean execute() {
 
         if(window.getImg() != null) {
 
@@ -51,7 +51,12 @@ public class Load implements Command{
     }
 
     @Override
-    public void paint(Graphics g) {
-        paint(g);
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
+
     }
 }

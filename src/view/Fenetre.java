@@ -1,15 +1,12 @@
 package view;
 
-import controleur.PatronCommand.Load;
+import controller.command.Load;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -101,7 +98,7 @@ public class Fenetre extends JFrame {
                     //load using load command
                     Load loadImg = new Load();
                     loadImg.setWindow(this);
-                    loadImg.doIt();
+                    loadImg.execute();
 
                     System.out.println("image loaded successfully");
                 } catch (IOException ex) {
