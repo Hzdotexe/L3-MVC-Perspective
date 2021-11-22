@@ -1,5 +1,7 @@
 package view;
 
+import controleur.PatronCommand.Load;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /******************************************************
  Cours:   LOG121
@@ -32,8 +35,10 @@ public class Fenetre extends JFrame {
     public BufferedImage img = null;
     private JPanel superPanel;
     private JMenuBar menuBar;
+    private ArrayList<Perspective> perspectives = new ArrayList<>();
 
-    public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
+
+    public Fenetre(Perspective init, PerspectiveZoom zoom, PerspectiveTranslation translation)  {
 
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +58,7 @@ public class Fenetre extends JFrame {
         this.setVisible(true);
     }
 
-    private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
+    private void createSuperPanel(Perspective init, PerspectiveZoom zoom, PerspectiveTranslation translation){
         this.superPanel = new JPanel();
         this.superPanel.setLayout(null);
         this.superPanel.setBackground(Color.GRAY);
@@ -76,15 +81,20 @@ public class Fenetre extends JFrame {
             fileChooser.setDialogTitle("Sélectionnez une photo");
             fileChooser.setAcceptAllFileFilterUsed(false);
             // Créer un filtre
-            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".jpeg", "jpeg");
+            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".jpg", "jpg");
             fileChooser.addChoosableFileFilter(filtre);
 
             int returnValue = fileChooser.showOpenDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 try {
-                    this.img = ImageIO.read(fileChooser.getSelectedFile());
-                    System.out.println(this.img);
+                    BufferedImage image = ImageIO.read(fileChooser.getSelectedFile());
+                    System.out.println("image success:");
+                    setImg(image);
+
+                    Load loadImg = new Load();
+                    loadImg.setWindow(this);
+                    loadImg.doIt();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -95,8 +105,21 @@ public class Fenetre extends JFrame {
         menuBar.add(menu);
     }
 
+    public  void setImg(BufferedImage img)
+    {
+        this.img = img;
+    }
     public BufferedImage getImg() {
-        return img;
+        return this.img;
+    }
+
+    public void addPerspective(Perspective perspective)
+    {
+        perspectives.add(perspective);
+    }
+    public ArrayList<Perspective> getPerspectives()
+    {
+        return this.perspectives;
     }
 
 }

@@ -18,6 +18,7 @@ public class Image {
     private double y;
     private double height;
     private double width;
+    private String src;
 
     public Image() {
     }
@@ -52,6 +53,14 @@ public class Image {
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
+    public String getSrc() {
+        return src;
     }
 
 }
