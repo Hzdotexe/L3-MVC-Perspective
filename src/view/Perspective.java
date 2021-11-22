@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /******************************************************
  Cours:   LOG121
@@ -25,4 +26,5 @@ public class Perspective extends JPanel {
         this.setSize(dimension);
         this.setLocation(location);
     }
+
 }
