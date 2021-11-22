@@ -22,8 +22,8 @@ import java.awt.geom.AffineTransform;
 
 public class TranslationCommand extends JPanel implements Command, MouseListener, MouseMotionListener {
     private Image imageTranslate;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private boolean dragger;
     private boolean released;
     private int xDiff;
@@ -32,7 +32,7 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
 
 
 
-    public TranslationCommand(int x, int y, Image imageTranslate) {
+    public TranslationCommand(Image imageTranslate, double x, double y) {
         this.imageTranslate = imageTranslate;
         this.x = x;
         this.y = y;

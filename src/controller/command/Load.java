@@ -20,7 +20,7 @@ import java.io.IOException;
                Nureddin Aida
  Professeur :  Vincent Lacasse
  Nom du fichier: Load.java
- Date créé: 2021-11-20
+ Date créé: 2021-11-22
  *******************************************************/
 
 public class Load implements Command{

@@ -2,9 +2,8 @@ package controller.command;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 
 /******************************************************
@@ -20,60 +19,68 @@ import java.awt.geom.AffineTransform;
  Date créé: 2021-11-20
  *******************************************************/
 
-public class ZoomCommand extends JPanel implements Command, MouseWheelListener {
+public class ZoomCommand extends JPanel implements Command {
     private java.awt.Image imageZoom;
-    private int height;
-    private int width;
-    private double zoomFactor;
-    private double prevZoomFactor;
+    private double height;
+    private double width;
+    private double zoom = 1.0;
     private boolean zoomer;
-    private static final double FACTOR = 1.1;
+    private static final double FACTOR = 0.1;
+    //private static final double MIN = 0.01;
 
     /**
      * Constructor
      * @param imageZoom The image for the command zoom.
-     * @param zoomFactor The zoom factor of the image.
-     * @param prevZoomFactor The previous zoom factor.
+     * @param height The zoom factor of the image.
+     * @param width The previous zoom factor.
      */
-    public ZoomCommand(Image imageZoom, int zoomFactor, int prevZoomFactor) {
+    public ZoomCommand(Image imageZoom, double height, double width) {
         this.imageZoom = imageZoom;
-        this.zoomFactor = zoomFactor;
-        this.prevZoomFactor = prevZoomFactor;
+        this.height = height;
+        this.width = width;
         initComponent();
     }
 
     private void initComponent(){
-        addMouseWheelListener(this);
+        addMouseWheelListener(new MouseAdapter() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                super.mouseWheelMoved(e);
+                zoomer = true;
+
+                //Zoom in
+                if (e.getWheelRotation() < 0) {
+                    zoom -= FACTOR;
+                    repaint();
+                } else
+                    //zoom out
+                    zoom += FACTOR;
+                    repaint();
+            }
+        });
     }
 
     public void paint(Graphics g) {
+
         super.paint(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g.create();
+
+        double zoomHeight = height*zoom;
+        double zoomWidth = width*zoom;
+
+        double anchorx = (width - zoomWidth)/2;
+        double anchory = (height - zoomHeight)/2;
+
         if (zoomer) {
-            AffineTransform transform = new AffineTransform();
-            transform.scale(zoomFactor, zoomFactor);
-            prevZoomFactor = zoomFactor;
-            g2.transform(transform);
+            AffineTransform at = new AffineTransform();
+            at.translate(anchorx,anchory);
+            at.scale(zoom, zoom);
+            at.translate(-100,-100);
+
+            g2.setTransform(at);
             zoomer = false;
         }
         g2.drawImage(imageZoom,0,0,this);
-    }
-
-    @Override
-    public void mouseWheelMoved (MouseWheelEvent e){
-        zoomer = true;
-
-        //Zoom in
-        if (e.getWheelRotation() < 0){
-            zoomFactor *= FACTOR;
-            repaint();
-        }
-
-        //Zoom out
-        if (e.getWheelRotation() > 0){
-            zoomFactor /= FACTOR;
-            repaint();
-        }
     }
 
     @Override
@@ -90,4 +97,5 @@ public class ZoomCommand extends JPanel implements Command, MouseWheelListener {
     public void redo() {
 
     }
+
 }
