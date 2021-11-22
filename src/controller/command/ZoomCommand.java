@@ -1,4 +1,4 @@
-package controleur.PatronCommand;
+package controller.command;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,16 +46,6 @@ public class ZoomCommand extends JPanel implements Command, MouseWheelListener {
         addMouseWheelListener(this);
     }
 
-
-    @Override
-    public boolean doIt() {
-        if (zoomer){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -84,5 +74,20 @@ public class ZoomCommand extends JPanel implements Command, MouseWheelListener {
             zoomFactor /= FACTOR;
             repaint();
         }
+    }
+
+    @Override
+    public boolean execute() {
+        return zoomer;
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
+
     }
 }
