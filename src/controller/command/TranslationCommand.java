@@ -1,4 +1,4 @@
-package controleur.PatronCommand;
+package controller.command;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +32,7 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
 
 
 
-    public TranslationCommand() {
+    public TranslationCommand(int x, int y, Image imageTranslate) {
         this.imageTranslate = imageTranslate;
         this.x = x;
         this.y = y;
@@ -43,14 +43,6 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
         addMouseListener(this);
     }
 
-    @Override
-    public boolean doIt() {
-        if (dragger){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public void paint(Graphics g){
         super.paint(g);
@@ -111,6 +103,21 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public boolean execute() {
+        return dragger;
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void redo() {
 
     }
 }
