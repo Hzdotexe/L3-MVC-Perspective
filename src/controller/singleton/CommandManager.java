@@ -1,10 +1,9 @@
 package controller.singleton;
-import controller.Command;
-import controller.Redo;
-import controller.Undo;
+import controller.command.Command;
+import controller.command.Redo;
+import controller.command.Undo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class CommandManager {
