@@ -80,21 +80,30 @@ public class Fenetre extends JFrame {
             fileChooser.setCurrentDirectory(new File("src"));
             fileChooser.setDialogTitle("Sélectionnez une photo");
             fileChooser.setAcceptAllFileFilterUsed(false);
-            // Créer un filtre
-            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".jpg", "jpg");
-            fileChooser.addChoosableFileFilter(filtre);
+
+            // Create filters
+            FileNameExtensionFilter filtreJpg = new FileNameExtensionFilter(".jpg", "jpg");
+            FileNameExtensionFilter filtrePng = new FileNameExtensionFilter(".png", "png");
+            FileNameExtensionFilter filtreJpeg = new FileNameExtensionFilter(".jpeg", "jpeg");
+
+            // add filters
+            fileChooser.addChoosableFileFilter(filtreJpg);
+            fileChooser.addChoosableFileFilter(filtrePng);
+            fileChooser.addChoosableFileFilter(filtreJpeg);
 
             int returnValue = fileChooser.showOpenDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 try {
                     BufferedImage image = ImageIO.read(fileChooser.getSelectedFile());
-                    System.out.println("image success:");
                     setImg(image);
 
+                    //load using load command
                     Load loadImg = new Load();
                     loadImg.setWindow(this);
                     loadImg.doIt();
+
+                    System.out.println("image loaded successfully");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

@@ -1,9 +1,6 @@
 package view;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class GUI {
 
@@ -14,6 +11,7 @@ public class GUI {
 
 
     public static void main(String[] args){
+
         Perspective init = new Perspective("Original",PERSPECTIVE_INIT_LOCATION,PERSPECTIVE_DIMENSION);
         PerspectiveZoom zoom = new PerspectiveZoom("Zoom",PERSPECTIVE_ZOOM_LOCATION,PERSPECTIVE_DIMENSION);
         PerspectiveTranslation translation = new PerspectiveTranslation("Translation",PERSPECTIVE_TRANSLATION_LOCATION,PERSPECTIVE_DIMENSION);
@@ -23,8 +21,7 @@ public class GUI {
         fenetre.addPerspective(init);
         fenetre.addPerspective(zoom);
 
-        System.out.println(fenetre.getPerspectives().size());
-
+        System.out.println(fenetre.getPerspectives().size()+" perspectives detected");
 
     }
 }

@@ -1,5 +1,10 @@
 package model;
 
+import observer.Observer;
+import observer.Subject;
+
+import java.util.ArrayList;
+
 /******************************************************
  Cours:   LOG121
  Session: A2021
@@ -13,12 +18,13 @@ package model;
  Date créé: 2021-11-15
  *******************************************************/
 
-public class Image {
+public class Image implements Subject {
     private double x;
     private double y;
     private double height;
     private double width;
     private String src;
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     public Image() {
     }
@@ -63,4 +69,15 @@ public class Image {
         return src;
     }
 
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer: observers) {
+            observer.update();
+        }
+    }
 }
