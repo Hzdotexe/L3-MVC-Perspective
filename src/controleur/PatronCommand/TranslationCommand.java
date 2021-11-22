@@ -78,6 +78,7 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // get location of the image by the mouse.
         released = false;
         startPoint = MouseInfo.getPointerInfo().getLocation();
     }
