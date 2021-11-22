@@ -27,6 +27,6 @@ public class PerspectiveZoomAction extends PerspectiveAbstractAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         PerspectiveAbstractAction.cm.execute(new ZoomCommand(view.getImg(),img.getHeight(),img.getWidth()));
-
+        System.out.println("Image zoomed successfully");
     }
 }

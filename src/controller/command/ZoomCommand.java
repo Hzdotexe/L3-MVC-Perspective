@@ -1,5 +1,7 @@
 package controller.command;
 
+import view.PerspectiveZoom;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

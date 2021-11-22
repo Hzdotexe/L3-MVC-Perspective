@@ -28,6 +28,7 @@ public class PerspectiveTranslationAction extends PerspectiveAbstractAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         PerspectiveAbstractAction.cm.execute(new TranslationCommand(view.getImg(), img.getX(),img.getY()));
+        System.out.println("Image moved successfully");
 
     }
 }
