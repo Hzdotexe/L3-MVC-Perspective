@@ -10,8 +10,8 @@ import java.util.LinkedList;
 public class CommandManager {
 
         private final static CommandManager manager = new CommandManager();
-        private LinkedList<Command> history = new LinkedList<Command>();
-        private LinkedList<Command> toRedo = new LinkedList<Command>();
+        private LinkedList<Command> history = new LinkedList<>();
+        private LinkedList<Command> toRedo = new LinkedList<>();
         // private final ArrayList redoCommands = new ArrayList<Command>();
         // private final ArrayList undoCommands = new ArrayList<Command>();
         private boolean undoStatus;
@@ -19,11 +19,11 @@ public class CommandManager {
         private final PropertyChangeSupport properties = new PropertyChangeSupport(this);
 
         // Singleton's constructor
-        private CommandManager() {};
+        private CommandManager() {}
 
         public static CommandManager getInstance(){
             return manager;
-        };
+        }
 
         public boolean canUndo() { return history.size() > 0; }
 
@@ -40,7 +40,7 @@ public class CommandManager {
                         command.redo();
                 }
                 else {
-                        if (command.toDo()) { // toDo doesn't exist
+                        if (command.execute()) {
                                 history.addFirst(command);
                         }
                         else {
