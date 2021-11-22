@@ -1,5 +1,6 @@
 package view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -7,16 +8,19 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
+    public BufferedImage img = null;
     private JPanel superPanel;
     private JMenuBar menuBar;
 
-    public Fenetre()  {
+    public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
 
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,49 +34,23 @@ public class Fenetre extends JFrame {
         this.setJMenuBar(menuBar);
 
         //Ajout du panneau englobant
-        createSuperPanel();
+        createSuperPanel(init, zoom , translation);
         this.add(this.superPanel);
 
         this.setVisible(true);
     }
 
-    private void createSuperPanel(){
+    private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
         this.superPanel = new JPanel();
-        this.superPanel.setLayout(new GridLayout(2,2, 10, 10));
+        this.superPanel.setLayout(null);
         this.superPanel.setBackground(Color.GRAY);
-        addZoomPerspective(this.superPanel);
-        addTranslationPerspective(this.superPanel);
-        addInitPerspective(this.superPanel);
+        this.superPanel.add(init);
+        this.superPanel.add(zoom);
+        this.superPanel.add(translation);
 
 
     }
 
-    private void addInitPerspective(JPanel superPanel){
-        Perspective init = new Perspective(Color.RED);
-        Border border = BorderFactory.createTitledBorder("Original Perspective");
-        init.setSize(350,350);
-        init.setBorder(border);
-        init.setLayout(new BoxLayout(init, BoxLayout.X_AXIS));
-        superPanel.add(init);
-    }
-
-    private void addZoomPerspective(JPanel superPanel){
-        Perspective zoom = new Perspective(Color.BLUE);
-        Border border = BorderFactory.createTitledBorder("Zoom Perspective");
-        zoom.setSize(350,350);
-        zoom.setBorder(border);
-        zoom.setLayout(new BoxLayout(zoom, BoxLayout.Y_AXIS));
-        superPanel.add(zoom);
-    }
-
-    private void addTranslationPerspective(JPanel superPanel){
-        Perspective translation = new Perspective(Color.GREEN);
-        Border border = BorderFactory.createTitledBorder("Translation Perspective");
-        translation.setSize(350,350);
-        translation.setBorder(border);
-        translation.setLayout(new BoxLayout(translation, BoxLayout.Y_AXIS));
-        superPanel.add(translation);
-    }
     private void configMenu(){
 
         this.menuBar = new JMenuBar();
@@ -85,17 +63,27 @@ public class Fenetre extends JFrame {
             fileChooser.setDialogTitle("Sélectionnez une photo");
             fileChooser.setAcceptAllFileFilterUsed(false);
             // Créer un filtre
-            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".png", "png");
+            FileNameExtensionFilter filtre = new FileNameExtensionFilter(".jpeg", "jpeg");
             fileChooser.addChoosableFileFilter(filtre);
 
             int returnValue = fileChooser.showOpenDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    this.img = ImageIO.read(fileChooser.getSelectedFile());
+                    System.out.println(this.img);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         menu.add(load);
         menu.add(save);
         menuBar.add(menu);
     }
+
+    public BufferedImage getImg() {
+        return img;
+    }
+
 }
