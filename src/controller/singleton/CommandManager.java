@@ -11,8 +11,6 @@ public class CommandManager {
         private final static CommandManager manager = new CommandManager();
         private LinkedList<Command> history = new LinkedList<>();
         private LinkedList<Command> toRedo = new LinkedList<>();
-        // private final ArrayList redoCommands = new ArrayList<Command>();
-        // private final ArrayList undoCommands = new ArrayList<Command>();
         private boolean undoStatus;
         private boolean redoStatus;
         private final PropertyChangeSupport properties = new PropertyChangeSupport(this);
