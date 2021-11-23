@@ -31,10 +31,10 @@ public class CommandManager {
                 redoStatus = canRedo();
 
                 if (command instanceof Undo) {
-                        command.undo();
+                        undo();
                 }
                 else if (command instanceof Redo) {
-                        command.redo();
+                        redo();
                 }
                 else {
                         if (command.execute()) {
