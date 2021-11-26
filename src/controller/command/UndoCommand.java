@@ -1,6 +1,6 @@
 package controller.command;
 
-public class PerspectiveUndoCommand implements Command, Undo {
+public class UndoCommand implements Command, Undo {
 
     @Override
     public boolean execute() {

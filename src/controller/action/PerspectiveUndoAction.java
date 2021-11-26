@@ -1,6 +1,6 @@
 package controller.action;
 
-import controller.command.PerspectiveUndoCommand;
+import controller.command.UndoCommand;
 import model.Image;
 import view.Fenetre;
 
@@ -10,7 +10,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class PerspectiveUndoAction extends PerspectiveAbstractAction implements PropertyChangeListener {
-
     public PerspectiveUndoAction(Fenetre view, Image img, String text, Icon icon, String description, Integer mnemonic) {
         super(view, img, text, icon, description, mnemonic);
         PerspectiveAbstractAction.cm.addPropertyChangeListener(this);
@@ -19,7 +18,7 @@ public class PerspectiveUndoAction extends PerspectiveAbstractAction implements 
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        PerspectiveAbstractAction.cm.execute(new PerspectiveUndoCommand());
+        PerspectiveAbstractAction.cm.execute(new UndoCommand());
     }
 
     @Override
