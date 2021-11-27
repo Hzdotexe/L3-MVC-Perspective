@@ -1,5 +1,8 @@
 package view;
 
+import model.ImageModel;
+import observer.Observer;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -18,7 +21,8 @@ import java.awt.image.BufferedImage;
  Date créé: 2021-11-15
  *******************************************************/
 
-public class Perspective extends JPanel {
+public class Perspective extends JPanel implements Observer {
+    private ImageModel imageModel;
 
     public Perspective(String type, Point location, Dimension dimension){
         Border border = BorderFactory.createTitledBorder(type+ "Perspective");
@@ -27,4 +31,17 @@ public class Perspective extends JPanel {
         this.setLocation(location);
     }
 
+    public ImageModel getImageModel() {
+        return imageModel;
+    }
+
+    public void setImageModel(ImageModel imageModel) {
+        this.imageModel = imageModel;
+        this.add(new JLabel(new ImageIcon(imageModel.getImage())));
+    }
+
+    @Override
+    public void update() {
+
+    }
 }
