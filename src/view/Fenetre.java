@@ -1,15 +1,11 @@
 package view;
 
-import controller.command.Load;
+import controller.action.LoadAction;
+import model.ImageModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /******************************************************
@@ -29,13 +25,13 @@ public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
-    public BufferedImage img = null;
+    public ImageModel img = null;
     private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
 
 
-    public Fenetre(Perspective init, PerspectiveZoom zoom, PerspectiveTranslation translation)  {
+    public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
 
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,15 +51,13 @@ public class Fenetre extends JFrame {
         this.setVisible(true);
     }
 
-    private void createSuperPanel(Perspective init, PerspectiveZoom zoom, PerspectiveTranslation translation){
+    private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
         this.superPanel = new JPanel();
         this.superPanel.setLayout(null);
         this.superPanel.setBackground(Color.GRAY);
         this.superPanel.add(init);
         this.superPanel.add(zoom);
         this.superPanel.add(translation);
-
-
     }
 
     private void configMenu(){
@@ -72,51 +66,10 @@ public class Fenetre extends JFrame {
         JMenu menu = new JMenu("Menu");
         JMenuItem load = new JMenuItem("Load");
         JMenuItem save = new JMenuItem("Save");
-        load.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-            fileChooser.setCurrentDirectory(new File("src"));
-            fileChooser.setDialogTitle("Sélectionnez une photo");
-            fileChooser.setAcceptAllFileFilterUsed(false);
-
-            // Create filters
-            FileNameExtensionFilter filtreJpg = new FileNameExtensionFilter(".jpg", "jpg");
-            FileNameExtensionFilter filtrePng = new FileNameExtensionFilter(".png", "png");
-            FileNameExtensionFilter filtreJpeg = new FileNameExtensionFilter(".jpeg", "jpeg");
-
-            // add filters
-            fileChooser.addChoosableFileFilter(filtreJpg);
-            fileChooser.addChoosableFileFilter(filtrePng);
-            fileChooser.addChoosableFileFilter(filtreJpeg);
-
-            int returnValue = fileChooser.showOpenDialog(null);
-
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                try {
-                    BufferedImage image = ImageIO.read(fileChooser.getSelectedFile());
-                    setImg(image);
-
-                    //load using load command
-                    Load loadImg = new Load();
-                    loadImg.setWindow(this);
-                    loadImg.execute();
-
-                    System.out.println("image loaded successfully");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+        load.addActionListener(new LoadAction(this, "Charger", null, "Charger l'image", KeyEvent.VK_O));
         menu.add(load);
         menu.add(save);
         menuBar.add(menu);
-    }
-
-    public  void setImg(BufferedImage img)
-    {
-        this.img = img;
-    }
-    public BufferedImage getImg() {
-        return this.img;
     }
 
     public void addPerspective(Perspective perspective)
