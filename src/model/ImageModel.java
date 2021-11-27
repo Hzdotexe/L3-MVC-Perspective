@@ -42,18 +42,6 @@ public class ImageModel implements Subject {
         }
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer observer: observers) {
-            observer.update();
-        }
-    }
-
     public BufferedImage getImage() {
         return this.image;
     }
@@ -69,18 +57,35 @@ public class ImageModel implements Subject {
         return resizedImage;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
     public void setWidth(int width) {
-        Image tmp = image.getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
-        BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
+        this.width = width;
 
-        /*Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
-        g2d.dispose();*/
+        this.notifyObservers();
+    }
 
-        notifyObservers();
+    public int getHeight() {
+        return height;
     }
 
     public void setHeight(int height) {
+        this.height = height;
 
+        this.notifyObservers();
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer: observers) {
+            observer.update();
+        }
     }
 }

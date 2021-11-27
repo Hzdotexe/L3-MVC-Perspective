@@ -7,6 +7,7 @@ import view.Perspective;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
+import java.awt.*;
 import java.io.File;
 
 public class LoadCommand implements Command {
@@ -26,8 +27,8 @@ public class LoadCommand implements Command {
         fileChooser.setDialogTitle("Sélectionnez une image");
 
         // Allowed File extensions
-        for (int i = 0; i < EXTENSIONS.length; i++) {
-            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(EXTENSIONS[i][0], EXTENSIONS[i][1]));
+        for (String[] extension : EXTENSIONS) {
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(extension[0], extension[1]));
         }
     }
 
@@ -37,9 +38,9 @@ public class LoadCommand implements Command {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             for (Perspective perspective: fenetre.getPerspectives()) {
-                // remove existing JLabel in the JPanel
-                perspective.removeAll();
-                perspective.setImageModel(new ImageModel(fileChooser.getSelectedFile()));
+                ImageModel imageModel = new ImageModel(fileChooser.getSelectedFile());
+                imageModel.addObserver(perspective);
+                perspective.setImageModel(imageModel);
             }
 
             //refresh the UI when something is loaded
