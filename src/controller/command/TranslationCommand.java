@@ -1,11 +1,16 @@
 package controller.command;
 
+import model.ImageModel;
+import view.Fenetre;
+import view.Perspective;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 /******************************************************
  Cours:   LOG121
@@ -20,95 +25,34 @@ import java.awt.geom.AffineTransform;
  Date créé: 2021-11-20
  *******************************************************/
 
-public class TranslationCommand extends JPanel implements Command, MouseListener, MouseMotionListener {
-    private Image imageTranslate;
-    private double x;
-    private double y;
-    private boolean dragger;
-    private boolean released;
+public class TranslationCommand extends JPanel implements Command{
+    private ImageModel imageModel;
+    private int x;
+    private int y;
     private int xDiff;
     private int yDiff;
-    private Point startPoint;
 
 
-
-    public TranslationCommand(Image imageTranslate, double x, double y) {
-        this.imageTranslate = imageTranslate;
+    public TranslationCommand(ImageModel imageModel, int x, int y, int xDiff, int yDiff) {
+        this.imageModel = imageModel;
         this.x = x;
         this.y = y;
-        initComponent();
-    }
-
-    private void initComponent(){
-        addMouseListener(this);
-    }
-
-
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D) g;
-        if(dragger){
-            AffineTransform transform = new AffineTransform();
-            transform.translate(x+xDiff, y+yDiff);
-            g2.transform(transform);
-
-            if(released){
-                x += xDiff;
-                y += yDiff;
-                dragger = false;
-            }
-        }
-
-        g2.drawImage(imageTranslate,0,0,this);
+        this.xDiff = xDiff;
+        this.yDiff = yDiff;
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // get location of the image by the mouse.
-        released = false;
-        startPoint = MouseInfo.getPointerInfo().getLocation();
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        released = true;
-        repaint();
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        Point currentPoint = e.getLocationOnScreen();
-        xDiff = currentPoint.x - startPoint.x;
-        yDiff = currentPoint.y - startPoint.y;
-
-        dragger = true;
-        repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-    }
 
     @Override
     public boolean execute() {
-        return dragger;
+
+        if (imageModel.getImage() != null){
+            imageModel.setX(x+xDiff);
+            imageModel.setY(y+yDiff);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -120,4 +64,5 @@ public class TranslationCommand extends JPanel implements Command, MouseListener
     public void redo() {
 
     }
+
 }

@@ -1,11 +1,13 @@
 package view;
 
 import controller.action.LoadAction;
+import controller.action.PerspectiveTranslationAction;
 import model.ImageModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /******************************************************
@@ -25,10 +27,11 @@ public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
-    public ImageModel img = null;
+    public ImageModel img;
     private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
+
 
 
     public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
@@ -49,7 +52,17 @@ public class Fenetre extends JFrame {
         this.add(this.superPanel);
 
         this.setVisible(true);
+
+
+        //Créer les actions
+        translation.addMouseListener(new PerspectiveTranslationAction(this,translation.getImageModel(),"Translation pressed",null,
+                "Translation l'image",KeyEvent.VK_A));
+        translation.addMouseMotionListener(new PerspectiveTranslationAction(this,translation.getImageModel(),"Translation dragged",null,
+                "Translation l'image",KeyEvent.VK_V));
+
+
     }
+
 
     private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
         this.superPanel = new JPanel();
@@ -58,6 +71,7 @@ public class Fenetre extends JFrame {
         this.superPanel.add(init);
         this.superPanel.add(zoom);
         this.superPanel.add(translation);
+
     }
 
     private void configMenu(){

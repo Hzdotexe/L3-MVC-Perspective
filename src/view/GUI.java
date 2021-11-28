@@ -1,6 +1,11 @@
 package view;
 
+import controller.action.PerspectiveTranslationAction;
+
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+
 /******************************************************
  Cours:   LOG121
  Session: A2021
@@ -22,7 +27,9 @@ public class GUI {
     private static final Point PERSPECTIVE_TRANSLATION_LOCATION = new Point(620,10);
 
 
+
     public static void main(String[] args){
+
 
         Perspective init = new Perspective("Original",PERSPECTIVE_INIT_LOCATION,PERSPECTIVE_DIMENSION);
         Perspective zoom = new Perspective("Zoom",PERSPECTIVE_ZOOM_LOCATION,PERSPECTIVE_DIMENSION);
