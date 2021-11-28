@@ -12,9 +12,9 @@ import java.io.File;
 
 public class LoadCommand implements Command {
     public static final String[][] EXTENSIONS = {
-            {".jpg", "Fichier d'extension JPG"},
-            {".png", "Fichier d'extension PNG"},
-            {".jpeg", "Fichier d'extension JPEG"}
+            {"jpg", "Fichier d'extension JPG"},
+            {"png", "Fichier d'extension PNG"},
+            {"jpeg", "Fichier d'extension JPEG"}
     };
     private JFileChooser fileChooser;
     private Fenetre fenetre;
@@ -28,7 +28,7 @@ public class LoadCommand implements Command {
 
         // Allowed File extensions
         for (String[] extension : EXTENSIONS) {
-            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(extension[0], extension[1]));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(extension[1], extension[0]));
         }
     }
 
