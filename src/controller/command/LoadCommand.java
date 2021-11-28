@@ -3,11 +3,10 @@ package controller.command;
 import model.ImageModel;
 import view.Fenetre;
 import view.Perspective;
-
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import java.awt.*;
 import java.io.File;
 
 public class LoadCommand implements Command {
