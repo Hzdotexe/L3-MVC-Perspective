@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 /******************************************************
  Cours:   LOG121
@@ -21,7 +22,7 @@ import java.awt.image.BufferedImage;
  Date créé: 2021-11-15
  *******************************************************/
 
-public class Perspective extends JPanel implements Observer {
+public class Perspective extends JPanel implements Observer, Serializable {
     private ImageModel imageModel;
     private String type;
 
@@ -40,7 +41,7 @@ public class Perspective extends JPanel implements Observer {
 
     public void setImageModel(ImageModel imageModel) {
         this.imageModel = imageModel;
-        this.add(new JLabel(new ImageIcon(imageModel.getImage())));
+        this.add(new JLabel(imageModel.getImageIcon()));
     }
 
     public String getType() {
@@ -49,7 +50,7 @@ public class Perspective extends JPanel implements Observer {
 
     @Override
     public void update() {
-        Image tmp = imageModel.getImage().getScaledInstance(imageModel.getWidth(), imageModel.getHeight(), Image.SCALE_SMOOTH);
+        Image tmp = imageModel.getImageIcon().getImage().getScaledInstance(imageModel.getWidth(), imageModel.getHeight(), Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(this.imageModel.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = resizedImage.createGraphics();

@@ -13,6 +13,6 @@ public class SaveAction extends PerspectiveAbstractAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        PerspectiveAbstractAction.cm.execute(new SaveCommand());
+        PerspectiveAbstractAction.cm.execute(new SaveCommand(view));
     }
 }
