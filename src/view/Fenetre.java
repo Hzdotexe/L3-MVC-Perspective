@@ -2,6 +2,8 @@ package view;
 
 import controller.action.LoadAction;
 import controller.action.TranslationAction;
+import controller.action.ZoomAction;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
@@ -49,6 +51,7 @@ public class Fenetre extends JFrame {
 
         //Actions pour les panneaux
         translation.addMouseListener(new TranslationAction(translation));
+        zoom.addMouseWheelListener(new ZoomAction(zoom));
 
         this.add(this.superPanel);
         this.setVisible(true);

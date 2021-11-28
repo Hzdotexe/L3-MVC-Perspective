@@ -1,11 +1,11 @@
 package controller.action;
 
 import controller.command.ZoomCommand;
-import model.ImageModel;
-import view.Fenetre;
+import controller.singleton.CommandManager;
+import view.Perspective;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 /******************************************************
  Cours:   LOG121
  Session: A2021
@@ -18,15 +18,21 @@ import java.awt.event.ActionEvent;
  Nom du fichier: PerspectiveZoomAction.java
  Date créé: 2021-11-22
  *******************************************************/
+public class ZoomAction implements MouseWheelListener {
+    protected final static CommandManager cm = CommandManager.getInstance();
+    private Perspective perspective;
 
-public class ZoomAction extends PerspectiveAbstractAction{
-    public ZoomAction(Fenetre view, ImageModel img, String text, Icon icon, String description, Integer mnemonic) {
-        super(view, img, text, icon, description, mnemonic);
+    public ZoomAction(Perspective perspective) {
+        this.perspective = perspective;
     }
 
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        PerspectiveAbstractAction.cm.execute(new ZoomCommand(img.getImage(),img.getHeight(),img.getWidth()));
-        System.out.println("Image zoomed successfully");
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (e.getWheelRotation() < 0) { // Zoom in
+            cm.execute(new ZoomCommand(perspective.getImageModel(), 1, 1));
+        } else { // Zoom out
+            cm.execute(new ZoomCommand(perspective.getImageModel(), -1, -1));
+        }
     }
 }

@@ -1,10 +1,7 @@
 package controller.command;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseWheelEvent;
-import java.awt.geom.AffineTransform;
+import model.ImageModel;
+import javax.swing.JPanel;
 
 /******************************************************
  Cours:   LOG121
@@ -18,84 +15,31 @@ import java.awt.geom.AffineTransform;
  Nom du fichier: ZoomCommand.java
  Date créé: 2021-11-20
  *******************************************************/
-
 public class ZoomCommand extends JPanel implements Command {
-    private java.awt.Image imageZoom;
-    private double height;
-    private double width;
-    private double zoom = 1.0;
-    private boolean zoomer;
-    private static final double FACTOR = 0.1;
-    //private static final double MIN = 0.01;
+    private ImageModel imageModel;
+    private int height;
+    private int width;
 
-    /**
-     * Constructor
-     * @param imageZoom The image for the command zoom.
-     * @param height The zoom factor of the image.
-     * @param width The previous zoom factor.
-     */
-    public ZoomCommand(Image imageZoom, double height, double width) {
-        this.imageZoom = imageZoom;
-        this.height = height;
+    public ZoomCommand(ImageModel imageModel, int width, int height) {
+        this.imageModel = imageModel;
         this.width = width;
-        initComponent();
-    }
-
-    private void initComponent(){
-        addMouseWheelListener(new MouseAdapter() {
-            @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                super.mouseWheelMoved(e);
-                zoomer = true;
-
-                //Zoom in
-                if (e.getWheelRotation() < 0) {
-                    zoom -= FACTOR;
-                    repaint();
-                } else
-                    //zoom out
-                    zoom += FACTOR;
-                    repaint();
-            }
-        });
-    }
-
-    public void paint(Graphics g) {
-
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D) g.create();
-
-        double zoomHeight = height*zoom;
-        double zoomWidth = width*zoom;
-
-        double anchorx = (width - zoomWidth)/2;
-        double anchory = (height - zoomHeight)/2;
-
-        if (zoomer) {
-            AffineTransform at = new AffineTransform();
-            at.translate(anchorx,anchory);
-            at.scale(zoom, zoom);
-            at.translate(-100,-100);
-
-            g2.setTransform(at);
-            zoomer = false;
-        }
-        g2.drawImage(imageZoom,0,0,this);
+        this.height = height;
     }
 
     @Override
     public boolean execute() {
-        return zoomer;
+        if (imageModel.getImage() != null) {
+            imageModel.setWidth(imageModel.getWidth() + width);
+            imageModel.setHeight(imageModel.getHeight() + height);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public void undo() {
-
-    }
+    public void undo() {}
 
     @Override
-    public void redo() {
-
-    }
-
+    public void redo() {}
 }
