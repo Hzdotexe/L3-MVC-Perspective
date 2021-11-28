@@ -37,6 +37,7 @@ public class LoadCommand implements Command {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             for (Perspective perspective: fenetre.getPerspectives()) {
+                perspective.removeAll();
                 ImageModel imageModel = new ImageModel(fileChooser.getSelectedFile());
                 imageModel.addObserver(perspective);
                 perspective.setImageModel(imageModel);

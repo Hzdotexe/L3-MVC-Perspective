@@ -1,6 +1,7 @@
 package view;
 
 import controller.action.LoadAction;
+import controller.action.SaveAction;
 import model.ImageModel;
 
 import javax.swing.*;
@@ -65,9 +66,11 @@ public class Fenetre extends JFrame {
         JMenu menu = new JMenu("Menu");
         menu.setMnemonic(KeyEvent.VK_F);
         JMenuItem load = new JMenuItem(new LoadAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
-        JMenuItem save = new JMenuItem("Save");
+        JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder l'image", KeyEvent.VK_S));
+        JMenuItem undo = new JMenuItem(new SaveAction(this, "Undo", null, "Defaire une action", KeyEvent.VK_Z));
         menu.add(load);
         menu.add(save);
+        menu.add(undo);
         menuBar.add(menu);
     }
 
