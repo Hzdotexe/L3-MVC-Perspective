@@ -61,12 +61,11 @@ public class Fenetre extends JFrame {
     }
 
     private void configMenu(){
-
         this.menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
-        JMenuItem load = new JMenuItem("Load");
+        menu.setMnemonic(KeyEvent.VK_F);
+        JMenuItem load = new JMenuItem(new LoadAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
         JMenuItem save = new JMenuItem("Save");
-        load.addActionListener(new LoadAction(this, "Charger", null, "Charger l'image", KeyEvent.VK_O));
         menu.add(load);
         menu.add(save);
         menuBar.add(menu);
