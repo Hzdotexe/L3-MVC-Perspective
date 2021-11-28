@@ -30,12 +30,16 @@ public class ImageModel implements Subject {
     private BufferedImage image;
     private int width;
     private int height;
+    private int x;
+    private int y;
 
     public ImageModel(File imageFile) {
         try {
             this.image = ImageIO.read(imageFile);
             this.width = GUI.PERSPECTIVE_DIMENSION.width;
             this.height = GUI.PERSPECTIVE_DIMENSION.height;
+            this.x = 0;
+            this.y = 0;
             this.image = this.scaleImage();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +55,7 @@ public class ImageModel implements Subject {
         BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
+        g2d.drawImage(tmp, this.x, this.y, null);
         g2d.dispose();
 
         return resizedImage;
@@ -61,9 +65,26 @@ public class ImageModel implements Subject {
         return width;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        this.notifyObservers();
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        this.notifyObservers();
+    }
+
     public void setWidth(int width) {
         this.width = width;
-
         this.notifyObservers();
     }
 
@@ -73,7 +94,6 @@ public class ImageModel implements Subject {
 
     public void setHeight(int height) {
         this.height = height;
-
         this.notifyObservers();
     }
 
