@@ -53,7 +53,7 @@ public class Perspective extends JPanel implements Observer {
         BufferedImage resizedImage = new BufferedImage(this.imageModel.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
+        g2d.drawImage(tmp, imageModel.getX(), imageModel.getY(), null);
         g2d.dispose();
 
         this.removeAll();
