@@ -1,11 +1,7 @@
 package controller.command;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import java.awt.geom.AffineTransform;
+import model.ImageModel;
+import javax.swing.JPanel;
 
 /******************************************************
  Cours:   LOG121
@@ -19,75 +15,31 @@ import java.awt.geom.AffineTransform;
  Nom du fichier: ZoomCommand.java
  Date créé: 2021-11-20
  *******************************************************/
-
-public class ZoomCommand extends JPanel implements Command, MouseWheelListener {
-    private java.awt.Image imageZoom;
+public class ZoomCommand extends JPanel implements Command {
+    private ImageModel imageModel;
     private int height;
     private int width;
-    private double zoomFactor;
-    private double prevZoomFactor;
-    private boolean zoomer;
-    private static final double FACTOR = 1.1;
 
-    /**
-     * Constructor
-     * @param imageZoom The image for the command zoom.
-     * @param zoomFactor The zoom factor of the image.
-     * @param prevZoomFactor The previous zoom factor.
-     */
-    public ZoomCommand(Image imageZoom, int zoomFactor, int prevZoomFactor) {
-        this.imageZoom = imageZoom;
-        this.zoomFactor = zoomFactor;
-        this.prevZoomFactor = prevZoomFactor;
-        initComponent();
-    }
-
-    private void initComponent(){
-        addMouseWheelListener(this);
-    }
-
-    public void paint(Graphics g) {
-        super.paint(g);
-        Graphics2D g2 = (Graphics2D) g;
-        if (zoomer) {
-            AffineTransform transform = new AffineTransform();
-            transform.scale(zoomFactor, zoomFactor);
-            prevZoomFactor = zoomFactor;
-            g2.transform(transform);
-            zoomer = false;
-        }
-        g2.drawImage(imageZoom,0,0,this);
-    }
-
-    @Override
-    public void mouseWheelMoved (MouseWheelEvent e){
-        zoomer = true;
-
-        //Zoom in
-        if (e.getWheelRotation() < 0){
-            zoomFactor *= FACTOR;
-            repaint();
-        }
-
-        //Zoom out
-        if (e.getWheelRotation() > 0){
-            zoomFactor /= FACTOR;
-            repaint();
-        }
+    public ZoomCommand(ImageModel imageModel, int width, int height) {
+        this.imageModel = imageModel;
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     public boolean execute() {
-        return zoomer;
+        if (imageModel.getImage() != null) {
+            imageModel.setWidth(imageModel.getWidth() + width);
+            imageModel.setHeight(imageModel.getHeight() + height);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public void undo() {
-
-    }
+    public void undo() {}
 
     @Override
-    public void redo() {
-
-    }
+    public void redo() {}
 }

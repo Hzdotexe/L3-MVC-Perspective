@@ -1,6 +1,20 @@
 package view;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
+
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+               Hanz Sami, Fatsy Ramampiarison,
+               Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: GUI.java
+ Date créé: 2021-11-20
+ *******************************************************/
 
 public class GUI {
 
@@ -10,7 +24,9 @@ public class GUI {
     private static final Point PERSPECTIVE_TRANSLATION_LOCATION = new Point(620,10);
 
 
+
     public static void main(String[] args){
+
 
         Perspective init = new Perspective("Original",PERSPECTIVE_INIT_LOCATION,PERSPECTIVE_DIMENSION);
         Perspective zoom = new Perspective("Zoom",PERSPECTIVE_ZOOM_LOCATION,PERSPECTIVE_DIMENSION);
