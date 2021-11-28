@@ -32,7 +32,6 @@ public class TranslationAction extends MouseAdapter {
         perspective.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                System.out.println("Mouse Dragged");
                 int dx = e.getX() - mousePoint.x;
                 int dy = e.getY() - mousePoint.y;
                 perspectiveCenter.setLocation(perspectiveCenter.x+dx, perspectiveCenter.y+dy);
