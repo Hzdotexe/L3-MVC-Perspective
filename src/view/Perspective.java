@@ -1,14 +1,14 @@
 package view;
 
-import controller.action.PerspectiveTranslationAction;
 import model.ImageModel;
 import observer.Observer;
-
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 /******************************************************
@@ -61,7 +61,7 @@ public class Perspective extends JPanel implements Observer {
 
         this.removeAll();
         this.add(new JLabel(new ImageIcon(resizedImage)));
+
+        SwingUtilities.updateComponentTreeUI(this);
     }
-
-
 }

@@ -29,26 +29,18 @@ public class TranslationCommand extends JPanel implements Command{
     private ImageModel imageModel;
     private int x;
     private int y;
-    private int xDiff;
-    private int yDiff;
 
-
-    public TranslationCommand(ImageModel imageModel, int x, int y, int xDiff, int yDiff) {
+    public TranslationCommand(ImageModel imageModel, int x, int y) {
         this.imageModel = imageModel;
         this.x = x;
         this.y = y;
-        this.xDiff = xDiff;
-        this.yDiff = yDiff;
-
     }
-
 
     @Override
     public boolean execute() {
-
         if (imageModel.getImage() != null){
-            imageModel.setX(x+xDiff);
-            imageModel.setY(y+yDiff);
+            imageModel.setX(imageModel.getX()+x);
+            imageModel.setY(imageModel.getY()+y);
             return true;
         }
 
@@ -56,13 +48,8 @@ public class TranslationCommand extends JPanel implements Command{
     }
 
     @Override
-    public void undo() {
-
-    }
+    public void undo() {}
 
     @Override
-    public void redo() {
-
-    }
-
+    public void redo() {}
 }

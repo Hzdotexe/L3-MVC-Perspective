@@ -1,10 +1,7 @@
 package view;
 
-import controller.action.PerspectiveTranslationAction;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.Dimension;
+import java.awt.Point;
 
 /******************************************************
  Cours:   LOG121

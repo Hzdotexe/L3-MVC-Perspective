@@ -1,13 +1,14 @@
 package view;
 
 import controller.action.LoadAction;
-import controller.action.PerspectiveTranslationAction;
-import model.ImageModel;
-
-import javax.swing.*;
-import java.awt.*;
+import controller.action.TranslationAction;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /******************************************************
@@ -27,15 +28,11 @@ public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
-    public ImageModel img;
     private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
 
-
-
     public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
-
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("LOG121 - Labo 3");
@@ -49,18 +46,12 @@ public class Fenetre extends JFrame {
 
         //Ajout du panneau englobant
         createSuperPanel(init, zoom , translation);
+
+        //Actions pour les panneaux
+        translation.addMouseListener(new TranslationAction(translation));
+
         this.add(this.superPanel);
-
         this.setVisible(true);
-
-
-        //Créer les actions
-        translation.addMouseListener(new PerspectiveTranslationAction(this,translation.getImageModel(),"Translation pressed",null,
-                "Translation l'image",KeyEvent.VK_A));
-        translation.addMouseMotionListener(new PerspectiveTranslationAction(this,translation.getImageModel(),"Translation dragged",null,
-                "Translation l'image",KeyEvent.VK_V));
-
-
     }
 
 

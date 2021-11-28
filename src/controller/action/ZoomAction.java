@@ -19,8 +19,8 @@ import java.awt.event.ActionEvent;
  Date créé: 2021-11-22
  *******************************************************/
 
-public class PerspectiveZoomAction extends PerspectiveAbstractAction{
-    public PerspectiveZoomAction(Fenetre view, ImageModel img, String text, Icon icon, String description, Integer mnemonic) {
+public class ZoomAction extends PerspectiveAbstractAction{
+    public ZoomAction(Fenetre view, ImageModel img, String text, Icon icon, String description, Integer mnemonic) {
         super(view, img, text, icon, description, mnemonic);
     }
 
