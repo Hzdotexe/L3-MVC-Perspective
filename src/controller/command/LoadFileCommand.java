@@ -31,13 +31,24 @@ public class LoadFileCommand implements Command {
         int returnValue = fileChooser.showOpenDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            Perspective perspective;
+
+            for (Perspective perspective: fenetre.getPerspectives()) {
+                fenetre.remove(perspective);
+            }
+
             fenetre.getPerspectives().clear();
+            Perspective perspective;
+
             try {
                 FileInputStream fis = new FileInputStream(fileChooser.getSelectedFile().getAbsolutePath());
                 ObjectInputStream input = new ObjectInputStream(fis);
-                perspective = (Perspective) input.readObject();
-                fenetre.getPerspectives().add(perspective);
+
+                for (int i=0; i<3; i++) {
+                    perspective = (Perspective) input.readObject();
+                    System.out.println(perspective.getType());
+                    fenetre.getPerspectives().add(perspective);
+                    fenetre.showPerspectives();
+                }
 
                 input.close();
                 fis.close();

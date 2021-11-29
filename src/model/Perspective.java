@@ -30,6 +30,8 @@ import java.io.Serializable;
 public class Perspective extends JPanel implements Observer, Serializable {
     private ImageModel imageModel;
     private String type;
+    private Point location;
+    private Dimension dimension;
 
     public Perspective(String type, Point location, Dimension dimension){
         Border border = BorderFactory.createTitledBorder(type+ "Perspective");
@@ -37,6 +39,8 @@ public class Perspective extends JPanel implements Observer, Serializable {
         this.setSize(dimension);
         this.setLocation(location);
         this.type = type;
+        this.location = location;
+        this.dimension = dimension;
     }
 
     public ImageModel getImageModel() {

@@ -34,9 +34,9 @@ public class Fenetre extends JFrame {
     public final int WIDTH_FRAME = 1000;
     private JPanel superPanel;
     private JMenuBar menuBar;
-    private ArrayList<Perspective> perspectives = new ArrayList<>();
+    private ArrayList<Perspective> perspectives;
 
-    public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
+    public Fenetre(ArrayList<Perspective> perspectives)  {
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("LOG121 - Labo 3");
@@ -44,30 +44,31 @@ public class Fenetre extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        this.perspectives = perspectives;
+
         //Config du menu et l'ajouter a la fenetre
         configMenu();
         this.setJMenuBar(menuBar);
 
         //Ajout du panneau englobant
-        createSuperPanel(init, zoom , translation);
-
-        //Actions pour les panneaux
-        translation.addMouseListener(new TranslationAction(translation));
-        zoom.addMouseWheelListener(new ZoomAction(zoom));
-
-        this.add(this.superPanel);
+        createSuperPanel();
         this.setVisible(true);
     }
 
 
-    private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
-        this.superPanel = new JPanel();
-        this.superPanel.setLayout(null);
-        this.superPanel.setBackground(Color.GRAY);
-        this.superPanel.add(init);
-        this.superPanel.add(zoom);
-        this.superPanel.add(translation);
+    private void createSuperPanel(){
+        super.getContentPane().setLayout(null);
+        super.getContentPane().setBackground(Color.GRAY);
 
+        for (Perspective perspective: perspectives) {
+            super.getContentPane().add(perspective);
+
+            switch (perspective.getType()) {
+                case "Zoom": perspective.addMouseWheelListener(new ZoomAction(perspective));
+                    break;
+                case "Translation": perspective.addMouseListener(new TranslationAction(perspective));
+            }
+        }
     }
 
     private void configMenu(){
@@ -91,12 +92,19 @@ public class Fenetre extends JFrame {
         this.menuBar.add(image);
     }
 
-    public void addPerspective(Perspective perspective)
-    {
-        perspectives.add(perspective);
+    public void showPerspectives() {
+        for (Perspective perspective: perspectives) {
+            super.getContentPane().add(perspective);
+
+            switch (perspective.getType()) {
+                case "Zoom": perspective.addMouseWheelListener(new ZoomAction(perspective));
+                    break;
+                case "Translation": perspective.addMouseListener(new TranslationAction(perspective));
+            }
+        }
     }
-    public ArrayList<Perspective> getPerspectives()
-    {
+
+    public ArrayList<Perspective> getPerspectives(){
         return this.perspectives;
     }
 }

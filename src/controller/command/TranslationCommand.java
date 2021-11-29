@@ -21,6 +21,8 @@ public class TranslationCommand extends JPanel implements Command{
     private ImageModel imageModel;
     private int x;
     private int y;
+    private int oldX;
+    private int oldY;
 
     public TranslationCommand(ImageModel imageModel, int x, int y) {
         this.imageModel = imageModel;
@@ -35,12 +37,13 @@ public class TranslationCommand extends JPanel implements Command{
             imageModel.setY(imageModel.getY()+y);
             return true;
         }
-
         return false;
     }
 
     @Override
-    public void undo() {}
+    public void undo() {
+
+    }
 
     @Override
     public void redo() {}
