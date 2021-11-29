@@ -71,7 +71,7 @@ public class Fenetre extends JFrame {
 
         this.menuBar = new JMenuBar();
         JMenu fichier = new JMenu("Fichier");
-        JMenuItem load = new JMenuItem(new LoadAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
+        JMenuItem load = new JMenuItem(new LoadImageAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
         JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder l'image", KeyEvent.VK_S));
         fichier.add(load);
         fichier.add(save);

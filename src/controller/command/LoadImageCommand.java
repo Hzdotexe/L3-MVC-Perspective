@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
-public class LoadCommand implements Command {
+public class LoadImageCommand implements Command {
     public static final String[][] EXTENSIONS = {
             {"jpg", "Fichier d'extension JPG"},
             {"png", "Fichier d'extension PNG"},
@@ -18,7 +18,7 @@ public class LoadCommand implements Command {
     private JFileChooser fileChooser;
     private Fenetre fenetre;
 
-    public LoadCommand(Fenetre fenetre) {
+    public LoadImageCommand(Fenetre fenetre) {
         this.fenetre = fenetre;
 
         fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
