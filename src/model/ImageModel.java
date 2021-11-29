@@ -38,8 +38,8 @@ public class ImageModel implements Subject, Serializable {
     public ImageModel(File imageFile) {
         try {
             this.image = new ImageIcon(ImageIO.read(imageFile));
-            this.width = GUI.PERSPECTIVE_DIMENSION.width;
-            this.height = GUI.PERSPECTIVE_DIMENSION.height;
+            this.width = 500;
+            this.height = 500;
             this.x = 0;
             this.y = 0;
             this.scaleImage();
@@ -52,7 +52,7 @@ public class ImageModel implements Subject, Serializable {
         return this.image;
     }
 
-    public BufferedImage scaleImage() {
+    public void scaleImage() {
         Image tmp = image.getImage().getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
@@ -60,7 +60,7 @@ public class ImageModel implements Subject, Serializable {
         g2d.drawImage(tmp, this.x, this.y, null);
         g2d.dispose();
 
-        return resizedImage;
+        image = new ImageIcon(resizedImage);
     }
 
     public int getWidth() {

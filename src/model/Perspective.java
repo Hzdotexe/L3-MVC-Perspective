@@ -58,11 +58,11 @@ public class Perspective extends JPanel implements Observer, Serializable {
 
     @Override
     public void update() {
-        Image tmp = imageModel.getImageIcon().getImage().getScaledInstance(imageModel.getWidth(), imageModel.getHeight(), Image.SCALE_SMOOTH);
-        BufferedImage resizedImage = new BufferedImage(this.imageModel.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Image tmp = this.imageModel.getImageIcon().getImage().getScaledInstance(this.imageModel.getWidth(), this.imageModel.getHeight(), Image.SCALE_SMOOTH);
+        BufferedImage resizedImage = new BufferedImage(this.imageModel.getWidth(), this.imageModel.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, imageModel.getX(), imageModel.getY(), null);
+        g2d.drawImage(tmp, this.imageModel.getX(), this.imageModel.getY(), null);
         g2d.dispose();
 
         this.removeAll();

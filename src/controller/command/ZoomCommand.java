@@ -17,8 +17,10 @@ import javax.swing.JPanel;
  *******************************************************/
 public class ZoomCommand extends JPanel implements Command {
     private ImageModel imageModel;
-    private int height;
     private int width;
+    private int height;
+    private int oldWidth;
+    private int oldHeight;
 
     public ZoomCommand(ImageModel imageModel, int width, int height) {
         this.imageModel = imageModel;
@@ -37,7 +39,12 @@ public class ZoomCommand extends JPanel implements Command {
     }
 
     @Override
-    public void undo() {}
+    public void undo() {
+        oldWidth = width;
+        oldHeight = height;
+        imageModel.setWidth(imageModel.getWidth() - oldWidth);
+        imageModel.setHeight(imageModel.getHeight() - oldHeight);
+    }
 
     @Override
     public void redo() {}

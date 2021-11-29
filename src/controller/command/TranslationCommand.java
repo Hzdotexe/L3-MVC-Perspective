@@ -42,7 +42,10 @@ public class TranslationCommand extends JPanel implements Command{
 
     @Override
     public void undo() {
-
+        oldX = x;
+        oldY = y;
+        imageModel.setX(imageModel.getX() - oldX);
+        imageModel.setY(imageModel.getY() - oldY);
     }
 
     @Override

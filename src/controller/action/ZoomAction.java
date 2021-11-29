@@ -19,6 +19,7 @@ import java.awt.event.MouseWheelListener;
  Date créé: 2021-11-22
  *******************************************************/
 public class ZoomAction implements MouseWheelListener {
+    public static final int ZOOM_SPEED = 10;
     protected final static CommandManager cm = CommandManager.getInstance();
     private Perspective perspective;
 
@@ -30,9 +31,9 @@ public class ZoomAction implements MouseWheelListener {
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (e.getWheelRotation() < 0) { // Zoom in
-            cm.execute(new ZoomCommand(perspective.getImageModel(), 1, 1));
+            cm.execute(new ZoomCommand(perspective.getImageModel(), ZOOM_SPEED, ZOOM_SPEED));
         } else { // Zoom out
-            cm.execute(new ZoomCommand(perspective.getImageModel(), -1, -1));
+            cm.execute(new ZoomCommand(perspective.getImageModel(), -ZOOM_SPEED, -ZOOM_SPEED));
         }
     }
 }
