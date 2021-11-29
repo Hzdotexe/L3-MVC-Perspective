@@ -1,11 +1,13 @@
 package view;
 
-import controller.action.LoadAction;
-import controller.action.SaveAction;
-import model.ImageModel;
+import controller.action.*;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -26,14 +28,11 @@ public class Fenetre extends JFrame {
 
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
-    public ImageModel img = null;
     private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives = new ArrayList<>();
 
-
     public Fenetre(Perspective init, Perspective zoom, Perspective translation)  {
-
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("LOG121 - Labo 3");
@@ -47,10 +46,15 @@ public class Fenetre extends JFrame {
 
         //Ajout du panneau englobant
         createSuperPanel(init, zoom , translation);
-        this.add(this.superPanel);
 
+        //Actions pour les panneaux
+        translation.addMouseListener(new TranslationAction(translation));
+        zoom.addMouseWheelListener(new ZoomAction(zoom));
+
+        this.add(this.superPanel);
         this.setVisible(true);
     }
+
 
     private void createSuperPanel(Perspective init, Perspective zoom, Perspective translation){
         this.superPanel = new JPanel();
@@ -59,15 +63,16 @@ public class Fenetre extends JFrame {
         this.superPanel.add(init);
         this.superPanel.add(zoom);
         this.superPanel.add(translation);
+
     }
 
     private void configMenu(){
+
         this.menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
-        menu.setMnemonic(KeyEvent.VK_F);
         JMenuItem load = new JMenuItem(new LoadAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
         JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder l'image", KeyEvent.VK_S));
-        JMenuItem undo = new JMenuItem(new SaveAction(this, "Undo", null, "Defaire une action", KeyEvent.VK_Z));
+        JMenuItem undo = new JMenuItem(new UndoAction(this, "Undo", null, "Défaire une action", KeyEvent.VK_Z));
         menu.add(load);
         menu.add(save);
         menu.add(undo);

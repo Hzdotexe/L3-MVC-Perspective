@@ -2,8 +2,11 @@ package view;
 
 import model.ImageModel;
 import observer.Observer;
-
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -31,8 +34,8 @@ public class Perspective extends JPanel implements Observer, Serializable {
         this.setBorder(border);
         this.setSize(dimension);
         this.setLocation(location);
-
         this.type = type;
+
     }
 
     public ImageModel getImageModel() {
@@ -59,5 +62,7 @@ public class Perspective extends JPanel implements Observer, Serializable {
 
         this.removeAll();
         this.add(new JLabel(new ImageIcon(resizedImage)));
+
+        SwingUtilities.updateComponentTreeUI(this);
     }
 }
