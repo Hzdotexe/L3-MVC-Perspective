@@ -16,11 +16,11 @@ public class UndoAction extends PerspectiveAbstractAction implements PropertyCha
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        PerspectiveAbstractAction.cm.execute(new UndoCommand());
+        setEnabled(PerspectiveAbstractAction.cm.canUndo());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setEnabled(PerspectiveAbstractAction.cm.canUndo());
+        PerspectiveAbstractAction.cm.execute(new UndoCommand());
     }
 }
