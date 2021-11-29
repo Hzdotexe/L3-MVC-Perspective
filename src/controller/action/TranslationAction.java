@@ -2,7 +2,7 @@ package controller.action;
 
 import controller.command.TranslationCommand;
 import controller.singleton.CommandManager;
-import view.Perspective;
+import model.Perspective;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;

@@ -1,16 +1,8 @@
 package controller.command;
 
 import model.ImageModel;
-import view.Fenetre;
-import view.Perspective;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 /******************************************************
  Cours:   LOG121
@@ -29,6 +21,8 @@ public class TranslationCommand extends JPanel implements Command{
     private ImageModel imageModel;
     private int x;
     private int y;
+    private int oldX;
+    private int oldY;
 
     public TranslationCommand(ImageModel imageModel, int x, int y) {
         this.imageModel = imageModel;
@@ -38,17 +32,21 @@ public class TranslationCommand extends JPanel implements Command{
 
     @Override
     public boolean execute() {
-        if (imageModel.getImage() != null){
+        if (imageModel != null){
             imageModel.setX(imageModel.getX()+x);
             imageModel.setY(imageModel.getY()+y);
             return true;
         }
-
         return false;
     }
 
     @Override
-    public void undo() {}
+    public void undo() {
+        oldX = x;
+        oldY = y;
+        imageModel.setX(imageModel.getX() - oldX);
+        imageModel.setY(imageModel.getY() - oldY);
+    }
 
     @Override
     public void redo() {}

@@ -6,10 +6,12 @@ import view.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /******************************************************
@@ -25,9 +27,9 @@ import java.util.ArrayList;
  Date créé: 2021-11-15
  *******************************************************/
 
-public class ImageModel implements Subject {
+public class ImageModel implements Subject, Serializable {
     private ArrayList<Observer> observers = new ArrayList<>();
-    private BufferedImage image;
+    private ImageIcon image;
     private int width;
     private int height;
     private int x;
@@ -35,30 +37,30 @@ public class ImageModel implements Subject {
 
     public ImageModel(File imageFile) {
         try {
-            this.image = ImageIO.read(imageFile);
-            this.width = GUI.PERSPECTIVE_DIMENSION.width;
-            this.height = GUI.PERSPECTIVE_DIMENSION.height;
+            this.image = new ImageIcon(ImageIO.read(imageFile));
+            this.width = 500;
+            this.height = 500;
             this.x = 0;
             this.y = 0;
-            this.image = this.scaleImage();
+            this.scaleImage();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public BufferedImage getImage() {
+    public ImageIcon getImageIcon() {
         return this.image;
     }
 
-    public BufferedImage scaleImage() {
-        Image tmp = image.getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
+    public void scaleImage() {
+        Image tmp = image.getImage().getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = resizedImage.createGraphics();
         g2d.drawImage(tmp, this.x, this.y, null);
         g2d.dispose();
 
-        return resizedImage;
+        image = new ImageIcon(resizedImage);
     }
 
     public int getWidth() {
