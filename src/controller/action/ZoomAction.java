@@ -2,7 +2,7 @@ package controller.action;
 
 import controller.command.ZoomCommand;
 import controller.singleton.CommandManager;
-import view.Perspective;
+import model.Perspective;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 

@@ -1,5 +1,7 @@
 package view;
 
+import model.Perspective;
+
 import java.awt.Dimension;
 import java.awt.Point;
 

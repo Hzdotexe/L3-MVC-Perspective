@@ -2,8 +2,7 @@ package controller.action;
 
 import controller.command.SaveCommand;
 import view.Fenetre;
-
-import javax.swing.*;
+import javax.swing.Icon;
 import java.awt.event.ActionEvent;
 
 public class SaveAction extends PerspectiveAbstractAction{

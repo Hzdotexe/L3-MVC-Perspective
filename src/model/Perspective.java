@@ -1,6 +1,5 @@
-package view;
+package model;
 
-import model.ImageModel;
 import observer.Observer;
 import javax.swing.JPanel;
 import javax.swing.JLabel;

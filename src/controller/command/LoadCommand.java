@@ -2,7 +2,7 @@ package controller.command;
 
 import model.ImageModel;
 import view.Fenetre;
-import view.Perspective;
+import model.Perspective;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;

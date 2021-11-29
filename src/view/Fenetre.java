@@ -1,6 +1,7 @@
 package view;
 
 import controller.action.*;
+import model.Perspective;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,14 +70,21 @@ public class Fenetre extends JFrame {
     private void configMenu(){
 
         this.menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Menu");
+        JMenu fichier = new JMenu("Fichier");
         JMenuItem load = new JMenuItem(new LoadAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
         JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder l'image", KeyEvent.VK_S));
+        fichier.add(load);
+        fichier.add(save);
+
+        JMenu edition = new JMenu("Edition");
         JMenuItem undo = new JMenuItem(new UndoAction(this, "Undo", null, "Défaire une action", KeyEvent.VK_Z));
-        menu.add(load);
-        menu.add(save);
-        menu.add(undo);
-        menuBar.add(menu);
+        edition.add(undo);
+
+        JMenu image = new JMenu("Image");
+
+        menuBar.add(fichier);
+        menuBar.add(edition);
+        menuBar.add(image);
     }
 
     public void addPerspective(Perspective perspective)

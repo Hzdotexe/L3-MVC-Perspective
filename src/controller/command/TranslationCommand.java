@@ -1,16 +1,8 @@
 package controller.command;
 
 import model.ImageModel;
-import view.Fenetre;
-import view.Perspective;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 /******************************************************
  Cours:   LOG121
