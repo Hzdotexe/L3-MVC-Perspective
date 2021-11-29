@@ -1,8 +1,11 @@
 package view;
-
-import controller.action.*;
+import controller.action.TranslationAction;
+import controller.action.ZoomAction;
+import controller.action.SaveAction;
+import controller.action.UndoAction;
+import controller.action.LoadFileAction;
+import controller.action.LoadImageAction;
 import model.Perspective;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
@@ -68,23 +71,24 @@ public class Fenetre extends JFrame {
     }
 
     private void configMenu(){
-
         this.menuBar = new JMenuBar();
-        JMenu fichier = new JMenu("Fichier");
-        JMenuItem load = new JMenuItem(new LoadImageAction(this, "Load", null, "Charger l'image", KeyEvent.VK_O));
-        JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder l'image", KeyEvent.VK_S));
-        fichier.add(load);
-        fichier.add(save);
+        JMenu file = new JMenu("Fichier");
+        JMenuItem loadFile = new JMenuItem(new LoadFileAction(this, "Load", null, "Charger un fichier de perspectives", KeyEvent.VK_O));
+        JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder les perspectives ainsi que leur images", KeyEvent.VK_S));
+        file.add(loadFile);
+        file.add(save);
 
         JMenu edition = new JMenu("Edition");
         JMenuItem undo = new JMenuItem(new UndoAction(this, "Undo", null, "Défaire une action", KeyEvent.VK_Z));
         edition.add(undo);
 
         JMenu image = new JMenu("Image");
+        JMenuItem loadImage = new JMenuItem(new LoadImageAction(this, "Open", null, "Charger l'image dans les perspectives", KeyEvent.VK_I));
+        image.add(loadImage);
 
-        menuBar.add(fichier);
-        menuBar.add(edition);
-        menuBar.add(image);
+        this.menuBar.add(file);
+        this.menuBar.add(edition);
+        this.menuBar.add(image);
     }
 
     public void addPerspective(Perspective perspective)
@@ -95,5 +99,4 @@ public class Fenetre extends JFrame {
     {
         return this.perspectives;
     }
-
 }

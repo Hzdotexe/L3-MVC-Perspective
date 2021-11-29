@@ -2,8 +2,7 @@ package controller.action;
 
 import controller.command.LoadImageCommand;
 import view.Fenetre;
-
-import javax.swing.*;
+import javax.swing.Icon;
 import java.awt.event.ActionEvent;
 
 public class LoadImageAction extends PerspectiveAbstractAction {

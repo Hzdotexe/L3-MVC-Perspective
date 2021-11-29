@@ -30,7 +30,7 @@ public class TranslationCommand extends JPanel implements Command{
 
     @Override
     public boolean execute() {
-        if (imageModel.getImageIcon().getImage() != null){
+        if (imageModel != null){
             imageModel.setX(imageModel.getX()+x);
             imageModel.setY(imageModel.getY()+y);
             return true;

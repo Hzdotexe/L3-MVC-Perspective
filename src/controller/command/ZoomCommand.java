@@ -28,7 +28,7 @@ public class ZoomCommand extends JPanel implements Command {
 
     @Override
     public boolean execute() {
-        if (imageModel.getImageIcon().getImage() != null) {
+        if (imageModel != null) {
             imageModel.setWidth(imageModel.getWidth() + width);
             imageModel.setHeight(imageModel.getHeight() + height);
             return true;

@@ -7,7 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Image;
+import java.awt.Graphics2D;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
@@ -34,7 +37,6 @@ public class Perspective extends JPanel implements Observer, Serializable {
         this.setSize(dimension);
         this.setLocation(location);
         this.type = type;
-
     }
 
     public ImageModel getImageModel() {
