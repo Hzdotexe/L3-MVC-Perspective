@@ -1,9 +1,7 @@
 package controller.action;
 
 import controller.command.UndoCommand;
-import model.ImageModel;
 import view.Fenetre;
-
 import javax.swing.Icon;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
