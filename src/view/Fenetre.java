@@ -74,17 +74,17 @@ public class Fenetre extends JFrame {
     private void configMenu(){
         this.menuBar = new JMenuBar();
         JMenu file = new JMenu("Fichier");
-        JMenuItem loadFile = new JMenuItem(new LoadFileAction(this, "Load", null, "Charger un fichier de perspectives", KeyEvent.VK_O));
-        JMenuItem save = new JMenuItem(new SaveAction(this, "Save", null, "Sauvegarder les perspectives ainsi que leur images", KeyEvent.VK_S));
+        JMenuItem loadFile = new JMenuItem(new LoadFileAction(this, "Load", "Charger un fichier de perspectives", KeyEvent.VK_O));
+        JMenuItem save = new JMenuItem(new SaveAction(this, "Save", "Sauvegarder les perspectives ainsi que leur images", KeyEvent.VK_S));
         file.add(loadFile);
         file.add(save);
 
         JMenu edition = new JMenu("Edition");
-        JMenuItem undo = new JMenuItem(new UndoAction(this, "Undo", null, "Défaire une action", KeyEvent.VK_Z));
+        JMenuItem undo = new JMenuItem(new UndoAction(this, "Undo", "Défaire une action", KeyEvent.VK_Z));
         edition.add(undo);
 
         JMenu image = new JMenu("Image");
-        JMenuItem loadImage = new JMenuItem(new LoadImageAction(this, "Open", null, "Charger l'image dans les perspectives", KeyEvent.VK_I));
+        JMenuItem loadImage = new JMenuItem(new LoadImageAction(this, "Load", "Charger l'image dans les perspectives", KeyEvent.VK_I));
         image.add(loadImage);
 
         this.menuBar.add(file);

@@ -2,18 +2,15 @@ package controller.action;
 
 import controller.command.LoadFileCommand;
 import view.Fenetre;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class LoadFileAction extends PerspectiveAbstractAction {
-
-    public LoadFileAction(Fenetre view, String text, Icon icon, String description, Integer mnemonic) {
-        super(view, text, icon, description, mnemonic);
+    public LoadFileAction(Fenetre view, String text, String description, Integer mnemonic) {
+        super(view, text, description, mnemonic);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        PerspectiveAbstractAction.cm.execute(new LoadFileCommand(view));
+        PerspectiveAbstractAction.COMMAND_MANAGER.execute(new LoadFileCommand(view));
     }
 }

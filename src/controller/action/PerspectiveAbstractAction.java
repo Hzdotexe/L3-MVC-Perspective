@@ -19,13 +19,12 @@ import java.awt.event.KeyEvent;
  Nom du fichier: PerspectiveAbstractAction.java
  Date créé: 2021-11-21
  *******************************************************/
-
 public abstract class PerspectiveAbstractAction extends AbstractAction {
-    protected final static CommandManager cm = CommandManager.getInstance();
+    protected final static CommandManager COMMAND_MANAGER = CommandManager.getInstance();
     protected Fenetre view;
 
-    public PerspectiveAbstractAction(Fenetre view, String text, Icon icon, String description, Integer mnemonic) {
-        super(text, icon);
+    public PerspectiveAbstractAction(Fenetre view, String text, String description, Integer mnemonic) {
+        super(text);
 
         putValue(SHORT_DESCRIPTION, description); // Action's description
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic, KeyEvent.CTRL_DOWN_MASK)); // Action's shortcut key

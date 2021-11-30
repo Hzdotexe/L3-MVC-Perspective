@@ -22,7 +22,7 @@ import java.awt.event.MouseEvent;
  *******************************************************/
 
 public class TranslationAction extends MouseAdapter {
-    protected final static CommandManager cm = CommandManager.getInstance();
+    protected final static CommandManager COMMAND_MANAGER = CommandManager.getInstance();
     private Point perspectiveCenter;
     private Point mousePoint;
 
@@ -37,7 +37,7 @@ public class TranslationAction extends MouseAdapter {
                 perspectiveCenter.setLocation(perspectiveCenter.x+dx, perspectiveCenter.y+dy);
                 mousePoint = e.getPoint();
 
-                cm.execute(new TranslationCommand(perspective.getImageModel(), dx, dy));
+                COMMAND_MANAGER.execute(new TranslationCommand(perspective.getImageModel(), dx, dy));
             }
         });
     }
