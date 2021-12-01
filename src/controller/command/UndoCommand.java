@@ -1,5 +1,8 @@
 package controller.command;
 
+/**
+ * Undo the last command
+ */
 public class UndoCommand implements Command, Undo {
 
     @Override

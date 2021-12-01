@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+ Hanz Sami, Fatsy Ramampiarison,
+ Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: Fenetre.java
+ Date créé: 2021-11-15
+ *******************************************************/
 package view;
 import controller.action.TranslationAction;
 import controller.action.ZoomAction;
@@ -15,27 +27,21 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-/******************************************************
- Cours:   LOG121
- Session: A2021
- Groupe:  02
- Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
-               Hanz Sami, Fatsy Ramampiarison,
-               Nureddin Aida
- Professeur :  Vincent Lacasse
- Nom du fichier: Fenetre.java
- Date créé: 2021-11-15
- *******************************************************/
-
+/**
+ * Vue principale de l'application
+ */
 public class Fenetre extends JFrame {
-
+    private static final long serialVersionUID = 8983558202217591746L;
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
     private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives;
 
+    /**
+     * Create the frame
+     * @param perspectives
+     */
     public Fenetre(ArrayList<Perspective> perspectives)  {
         //Config de la fenetre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,6 +62,9 @@ public class Fenetre extends JFrame {
     }
 
 
+    /**
+     * Créer les perspectives et associer les "Actions"
+     */
     private void createSuperPanel(){
         super.getContentPane().setLayout(null);
         super.getContentPane().setBackground(Color.GRAY);
@@ -71,6 +80,9 @@ public class Fenetre extends JFrame {
         }
     }
 
+    /**
+     * Créer le menu et associer les actions
+     */
     private void configMenu(){
         this.menuBar = new JMenuBar();
         JMenu file = new JMenu("Fichier");
@@ -92,6 +104,9 @@ public class Fenetre extends JFrame {
         this.menuBar.add(image);
     }
 
+    /**
+     * Mise à jour les perspectives avec ses actions (Zoom et Translation)
+     */
     public void showPerspectives() {
         for (Perspective perspective: perspectives) {
             super.getContentPane().add(perspective);
@@ -104,6 +119,10 @@ public class Fenetre extends JFrame {
         }
     }
 
+    /**
+     * Getter automatiquement
+     * @return Perspectives
+     */
     public ArrayList<Perspective> getPerspectives(){
         return this.perspectives;
     }
