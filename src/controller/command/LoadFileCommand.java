@@ -6,7 +6,10 @@ import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
 
 public class LoadFileCommand implements Command {
     public static final String[] EXTENSIONS = {"ser"};

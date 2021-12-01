@@ -3,14 +3,12 @@ package controller.singleton;
 import controller.command.Command;
 import controller.command.Redo;
 import controller.command.Undo;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 
 public class CommandManager {
-
-    private final static CommandManager manager = new CommandManager();
+    private final static CommandManager COMMAND_MANAGER = new CommandManager();
     private LinkedList<Command> history = new LinkedList<>();
     private LinkedList<Command> toRedo = new LinkedList<>();
     private boolean undoStatus;
@@ -18,11 +16,10 @@ public class CommandManager {
     private final PropertyChangeSupport properties = new PropertyChangeSupport(this);
 
     // Singleton's constructor
-    private CommandManager() {
-    }
+    private CommandManager() {}
 
     public static CommandManager getInstance() {
-        return manager;
+        return COMMAND_MANAGER;
     }
 
     public boolean canUndo() {

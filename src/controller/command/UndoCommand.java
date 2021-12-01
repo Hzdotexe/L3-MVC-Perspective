@@ -1,7 +1,6 @@
 package controller.command;
 
 public class UndoCommand implements Command, Undo {
-
     @Override
     public boolean execute() {
         return false;
