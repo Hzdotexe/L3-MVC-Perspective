@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+ Hanz Sami, Fatsy Ramampiarison,
+ Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: GUI.java
+ Date créé: 2021-11-20
+ *******************************************************/
 package view;
 
 import model.Perspective;
@@ -6,19 +18,9 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 
-/******************************************************
- Cours:   LOG121
- Session: A2021
- Groupe:  02
- Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
-               Hanz Sami, Fatsy Ramampiarison,
-               Nureddin Aida
- Professeur :  Vincent Lacasse
- Nom du fichier: GUI.java
- Date créé: 2021-11-20
- *******************************************************/
-
+/**
+ * Launch the application
+ */
 public class GUI {
 
     public static final Dimension PERSPECTIVE_DIMENSION = new Dimension(350, 350);

@@ -8,6 +8,10 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 
+/**
+ * CommandInvoker
+ * Implementation du patron Command pour implementer les fonctionalites "do" et "undo"
+ */
 public class CommandManager {
 
     private final static CommandManager manager = new CommandManager();
@@ -25,14 +29,24 @@ public class CommandManager {
         return manager;
     }
 
+    /**
+     * Vérifier si c'est possible de faire Undo
+     */
     public boolean canUndo() {
         return history.size() > 0;
     }
 
+    /**
+     * Vérifier si c'est possible de faire Redo
+     */
     public boolean canRedo() {
         return toRedo.size() > 0;
     }
 
+    /**
+     * Faire le command
+     * @param command
+     */
     public void execute(Command command) {
         undoStatus = canUndo();
         redoStatus = canRedo();
@@ -55,7 +69,7 @@ public class CommandManager {
         }
     }
 
-    /*
+    /**
      * Undo the recent command
      */
     private void undo() {
@@ -67,7 +81,7 @@ public class CommandManager {
         }
     }
 
-    /*
+    /**
      * Redo the last command which was defeated
      */
     private void redo() {
@@ -79,10 +93,16 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Ajouter l'action de command
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         properties.addPropertyChangeListener(listener);
     }
 
+    /**
+     * Supprimer l'action de command
+     */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         properties.removePropertyChangeListener(listener);
     }

@@ -8,7 +8,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 
-public class LoadFileCommand implements Command {
+/**
+ *  Load image that used the command "Save" and with extensions "ser"
+ */
+public class LoadFileCommand implements Command, Serializable {
     public static final String[] EXTENSIONS = {"ser"};
     private JFileChooser fileChooser;
     private Fenetre fenetre;
