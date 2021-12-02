@@ -48,11 +48,7 @@ public class ImageModel implements Subject, Serializable {
         }
     }
 
-    public ImageIcon getImageIcon() {
-        return this.image;
-    }
-
-    public void scaleImage() {
+    private void scaleImage() {
         Image tmp = image.getImage().getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
@@ -63,8 +59,26 @@ public class ImageModel implements Subject, Serializable {
         image = new ImageIcon(resizedImage);
     }
 
+    public ImageIcon getImageIcon() {
+        return this.image;
+    }
+
     public int getWidth() {
         return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+        this.notifyObservers();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+        this.notifyObservers();
     }
 
     public int getX() {
@@ -82,20 +96,6 @@ public class ImageModel implements Subject, Serializable {
 
     public void setY(int y) {
         this.y = y;
-        this.notifyObservers();
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-        this.notifyObservers();
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
         this.notifyObservers();
     }
 
