@@ -5,6 +5,9 @@ import view.Fenetre;
 
 import java.io.*;
 
+/**
+ * Save the perspectives as one image in the new file "Saved Perspectives"
+ */
 public class SaveCommand implements Command {
     private Fenetre fenetre;
     private String directoryPath;

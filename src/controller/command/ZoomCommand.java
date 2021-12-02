@@ -1,20 +1,20 @@
-package controller.command;
-
-import model.ImageModel;
-import javax.swing.JPanel;
-
 /******************************************************
  Cours:   LOG121
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
  Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
-               Hanz Sami, Fatsy Ramampiarison,
-               Nureddin Aida
+ Hanz Sami, Fatsy Ramampiarison,
+ Nureddin Aida
  Professeur :  Vincent Lacasse
  Nom du fichier: ZoomCommand.java
  Date créé: 2021-11-20
  *******************************************************/
+package controller.command;
+
+import model.ImageModel;
+import javax.swing.JPanel;
+
 public class ZoomCommand extends JPanel implements Command {
     private ImageModel imageModel;
     private int width;

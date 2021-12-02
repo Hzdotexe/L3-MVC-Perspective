@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+ Hanz Sami, Fatsy Ramampiarison,
+ Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: Perspective.java
+ Date créé: 2021-11-15
+ *******************************************************/
 package model;
 
 import observer.Observer;
@@ -14,23 +26,19 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
-/******************************************************
- Cours:   LOG121
- Session: A2021
- Groupe:  02
- Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
-               Hanz Sami, Fatsy Ramampiarison,
-               Nureddin Aida
- Professeur :  Vincent Lacasse
- Nom du fichier: Perspective.java
- Date créé: 2021-11-15
- *******************************************************/
-
+/**
+ * Les informations de perspectives
+ */
 public class Perspective extends JPanel implements Observer, Serializable {
     private ImageModel imageModel;
     private String type;
 
+    /**
+     * Initialiser le perspective
+     * @param type Le type de perspective
+     * @param location L'emplacement de la perspective dans la fenêtre
+     * @param dimension Les dimensions de la perspective
+     */
     public Perspective(String type, Point location, Dimension dimension){
         Border border = BorderFactory.createTitledBorder(type+ "Perspective");
         this.setBorder(border);
@@ -39,6 +47,9 @@ public class Perspective extends JPanel implements Observer, Serializable {
         this.type = type;
     }
 
+    /**
+     * Getter & Setter
+     */
     public ImageModel getImageModel() {
         return imageModel;
     }

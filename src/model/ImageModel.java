@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
+ Hanz Sami, Fatsy Ramampiarison,
+ Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: Image.java
+ Date créé: 2021-11-15
+ *******************************************************/
 package model;
 
 import observer.Observer;
@@ -14,19 +26,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/******************************************************
- Cours:   LOG121
- Session: A2021
- Groupe:  02
- Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
-               Hanz Sami, Fatsy Ramampiarison,
-               Nureddin Aida
- Professeur :  Vincent Lacasse
- Nom du fichier: Image.java
- Date créé: 2021-11-15
- *******************************************************/
-
+/**
+ * Les information d'image
+ */
 public class ImageModel implements Subject, Serializable {
     private ArrayList<Observer> observers = new ArrayList<>();
     private ImageIcon image;
@@ -35,6 +37,10 @@ public class ImageModel implements Subject, Serializable {
     private int x;
     private int y;
 
+    /**
+     * Initialiser l'image
+     * @param imageFile Le fichier contenant l'image
+     */
     public ImageModel(File imageFile) {
         try {
             this.image = new ImageIcon(ImageIO.read(imageFile));
@@ -48,7 +54,14 @@ public class ImageModel implements Subject, Serializable {
         }
     }
 
-    private void scaleImage() {
+    public ImageIcon getImageIcon() {
+        return this.image;
+    }
+
+    /**
+     * Redimensionner et replacer l'image
+     */
+    public void scaleImage() {
         Image tmp = image.getImage().getScaledInstance(this.width, this.height, Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
@@ -59,8 +72,25 @@ public class ImageModel implements Subject, Serializable {
         image = new ImageIcon(resizedImage);
     }
 
-    public ImageIcon getImageIcon() {
-        return this.image;
+    /**
+     * Getter & Setter
+     */
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        this.notifyObservers();
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        this.notifyObservers();
     }
 
     public int getWidth() {
@@ -78,24 +108,6 @@ public class ImageModel implements Subject, Serializable {
 
     public void setHeight(int height) {
         this.height = height;
-        this.notifyObservers();
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-        this.notifyObservers();
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
         this.notifyObservers();
     }
 
