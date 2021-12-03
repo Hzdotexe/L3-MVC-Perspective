@@ -3,9 +3,9 @@
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
- Hanz Sami, Fatsy Ramampiarison,
- Nureddin Aida
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
  Professeur :  Vincent Lacasse
  Nom du fichier: Perspective.java
  Date créé: 2021-11-15
@@ -32,14 +32,12 @@ import java.io.Serializable;
 public class Perspective extends JPanel implements Observer, Serializable {
     private ImageModel imageModel;
     private String type;
-    private Point location;
-    private Dimension dimension;
 
     /**
      * Initialiser le perspective
-     * @param type
-     * @param location
-     * @param dimension
+     * @param type Le type de perspective
+     * @param location L'emplacement de la perspective dans la fenêtre
+     * @param dimension Les dimensions de la perspective
      */
     public Perspective(String type, Point location, Dimension dimension){
         Border border = BorderFactory.createTitledBorder(type+ "Perspective");
@@ -47,8 +45,6 @@ public class Perspective extends JPanel implements Observer, Serializable {
         this.setSize(dimension);
         this.setLocation(location);
         this.type = type;
-        this.location = location;
-        this.dimension = dimension;
     }
 
     /**

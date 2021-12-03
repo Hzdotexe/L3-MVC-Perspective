@@ -3,19 +3,17 @@
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
- Hanz Sami, Fatsy Ramampiarison,
- Nureddin Aida
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
  Professeur :  Vincent Lacasse
- Nom du fichier: Image.java
+ Nom du fichier: ImageModel.java
  Date créé: 2021-11-15
  *******************************************************/
 package model;
 
 import observer.Observer;
 import observer.Subject;
-import view.GUI;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Image;
@@ -39,7 +37,7 @@ public class ImageModel implements Subject, Serializable {
 
     /**
      * Initialiser l'image
-     * @param imageFile
+     * @param imageFile Le fichier contenant l'image
      */
     public ImageModel(File imageFile) {
         try {

@@ -1,20 +1,26 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: CommandManager.java
+ Date créé: 2021-11-22
+ *******************************************************/
 package controller.singleton;
 
 import controller.command.Command;
 import controller.command.Redo;
 import controller.command.Undo;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 
-/**
- * CommandInvoker
- * Implementation du patron Command pour implementer les fonctionalites "do" et "undo"
- */
 public class CommandManager {
-
-    private final static CommandManager manager = new CommandManager();
+    private final static CommandManager COMMAND_MANAGER = new CommandManager();
     private LinkedList<Command> history = new LinkedList<>();
     private LinkedList<Command> toRedo = new LinkedList<>();
     private boolean undoStatus;
@@ -22,11 +28,10 @@ public class CommandManager {
     private final PropertyChangeSupport properties = new PropertyChangeSupport(this);
 
     // Singleton's constructor
-    private CommandManager() {
-    }
+    private CommandManager() {}
 
     public static CommandManager getInstance() {
-        return manager;
+        return COMMAND_MANAGER;
     }
 
     /**
@@ -45,7 +50,7 @@ public class CommandManager {
 
     /**
      * Faire le command
-     * @param command
+     * @param command La commande à exécuter
      */
     public void execute(Command command) {
         undoStatus = canUndo();
