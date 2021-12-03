@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: CommandManager.java
+ Date créé: 2021-11-22
+ *******************************************************/
 package controller.singleton;
 
 import controller.command.Command;
@@ -7,10 +19,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 
-/**
- * CommandInvoker
- * Implementation du patron Command pour implementer les fonctionalites "do" et "undo"
- */
 public class CommandManager {
     private final static CommandManager COMMAND_MANAGER = new CommandManager();
     private LinkedList<Command> history = new LinkedList<>();

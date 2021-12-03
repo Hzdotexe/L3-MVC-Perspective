@@ -3,9 +3,9 @@
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
- Hanz Sami, Fatsy Ramampiarison,
- Nureddin Aida
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
  Professeur :  Vincent Lacasse
  Nom du fichier: Fenetre.java
  Date créé: 2021-11-15
@@ -19,7 +19,6 @@ import controller.action.LoadFileAction;
 import controller.action.LoadImageAction;
 import model.Perspective;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -34,7 +33,6 @@ public class Fenetre extends JFrame {
     private static final long serialVersionUID = 8983558202217591746L;
     public final int HEIGHT_FRAME = 800;
     public final int WIDTH_FRAME = 1000;
-    private JPanel superPanel;
     private JMenuBar menuBar;
     private ArrayList<Perspective> perspectives;
 

@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
+ Professeur :  Vincent Lacasse
+ Nom du fichier: LoadImageCommand.java
+ Date créé: 2021-11-22
+ *******************************************************/
 package controller.command;
 
 import model.ImageModel;
@@ -9,9 +21,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
-/**
- * Load image of the application
- */
 public class LoadImageCommand implements Command {
     public static final String[] EXTENSIONS = {"jpg", "png", "jpeg"};
     private JFileChooser fileChooser;

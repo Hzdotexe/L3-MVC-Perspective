@@ -1,3 +1,15 @@
+/******************************************************
+ Cours:   LOG121
+ Session: A2021
+ Groupe:  02
+ Projet: Laboratoire #3
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
+ Professeur : Vincent Lacasse
+ Nom du fichier: LoadFileCommand.java
+ Date créé: 2021-11-22
+ *******************************************************/
 package controller.command;
 
 import view.Fenetre;
@@ -12,9 +24,6 @@ import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
-/**
- *  Load image that used the command "Save" and with extensions "ser"
- */
 public class LoadFileCommand implements Command, Serializable {
     public static final String[] EXTENSIONS = {"ser"};
     private JFileChooser fileChooser;

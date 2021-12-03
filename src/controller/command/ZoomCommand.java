@@ -3,9 +3,9 @@
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
- Hanz Sami, Fatsy Ramampiarison,
- Nureddin Aida
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
  Professeur :  Vincent Lacasse
  Nom du fichier: ZoomCommand.java
  Date créé: 2021-11-20

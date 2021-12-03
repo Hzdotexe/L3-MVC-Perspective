@@ -3,11 +3,11 @@
  Session: A2021
  Groupe:  02
  Projet: Laboratoire #3
- Étudiant(e)s: Anyin Zhang, Isaac David Zolana,
- Hanz Sami, Fatsy Ramampiarison,
- Nureddin Aida
- Professeur :  Vincent Lacasse
- Nom du fichier: PerspectiveZoomAction.java
+ Étudiant(e)s:  Anyin Zhang, Isaac David Zolana,
+                Hanz Sami, Fatsy Ramampiarison,
+                Nureddin Aida
+ Professeur : Vincent Lacasse
+ Nom du fichier: ZoomAction.java
  Date créé: 2021-11-22
  *******************************************************/
 package controller.action;
@@ -18,9 +18,6 @@ import model.Perspective;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-/**
- * To active Zoom Action
- */
 public class ZoomAction implements MouseWheelListener {
     protected final static CommandManager COMMAND_MANAGER = CommandManager.getInstance();
     public static final int ZOOM_SPEED = 10;
@@ -29,7 +26,6 @@ public class ZoomAction implements MouseWheelListener {
     public ZoomAction(Perspective perspective) {
         this.perspective = perspective;
     }
-
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
